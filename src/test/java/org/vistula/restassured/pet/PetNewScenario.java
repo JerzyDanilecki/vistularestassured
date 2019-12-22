@@ -24,18 +24,18 @@ public class PetNewScenario extends RestAssuredTest {
 
         createNewPet(requestParams);
         getPet(value, randomName);
-        deletePet();
+        deletePet(value);
     }
 
-    private void deletePet() {
-        given().delete("/pet/4")
+    private void deletePet(int value) {
+        given().delete("/pet/"+value)
                 .then()
                 .log().all()
                 .statusCode(204);
     }
 
     private void getPet(int value, String randomName) {
-        given().get("/pet/" + value)
+        given().get("/pet/"+value)
                 .then()
                 .log().all()
                 .statusCode(200)
